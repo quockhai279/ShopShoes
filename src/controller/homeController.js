@@ -11,7 +11,10 @@ let getHomepage = async (req, res) => {
         console.log(e)
     }
 }
+let getCRUD = (req, res) => {
+    return res.render('crud.ejs')
+}
 
 module.exports = {
-    getHomepage
+    getHomepage, getCRUD
 }
