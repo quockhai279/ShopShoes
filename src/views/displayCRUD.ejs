@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="w3-container">
+        <h2>List user Table</h2>
+        <table class="w3-table-all w3-hoverable">
+            <thead>
+                <tr class="w3-light-grey">
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i < dataTable.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%= dataTable[i].id %>
+                        </td>
+                        <td>
+                            <%= dataTable[i].firstName %>
+                        </td>
+                        <td>
+                            <%= dataTable[i].lastName %>
+                        </td>
+                        <td>
+                            <%= dataTable[i].address %>
+                        </td>
+                        <td>
+                            <div class="btn-main">
+                                <button class="btn-list" type="button"><a
+                                        href="/detail/user/<%= dataTable[i].id%>">Detail</a></button>
+                                <button class="btn-list" type="button"><a
+                                        href="/edit-crud/<%= dataTable[i].id%>">Edit</a></button>
+                                <form class="btn-list" action="" method="post">
+                                    <input type="text" hidden value="<%= dataTable[i].id%>" name="userId">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+
+        </table>
+    </div>
+
+</body>
+
+</html>
