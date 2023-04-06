@@ -19,9 +19,9 @@ module.exports = {
       phoneNumber: '05648452867',
       address: 'Tay Ninh',
       gender: '1',
-      image: 'R1',
+      image: '',
       roleId: '',
-      positionId: 'R1',
+      positionId: '',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
