@@ -15,7 +15,7 @@ let createNewUser = (data) => {
                 address: data.address,
                 phoneNumber: data.phoneNumber,
                 gender: data.gender === '1' ? true : false,
-                roleId: data.roleId,
+                roleId: data.roleId
             })
             resolve('ok create new user succeed!')
         } catch (e) {
