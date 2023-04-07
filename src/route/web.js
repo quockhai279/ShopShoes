@@ -8,9 +8,11 @@ const initWebRoute = (app) => {
     router.get('/crud', homeController.getCRUD);
     router.post('/post-crud', homeController.postCRUD);
     router.get('/get-crud', homeController.displayGetCRUD);
-    router.get('/edit-crud/:id', homeController.getEditCRUD);
+    router.get('/edit-crud', homeController.getEditCRUD);
     router.post('/put-crud', homeController.putCRUD);
+    router.get('/delete-crud', homeController.deleteCRUD);
 
+    // router.get('/detail/user/:id', homeController.getDetailCRUD);
 
     router.get('/about', (req, res) => {
         res.send('Hello World!')

@@ -43,11 +43,9 @@
                                 <button class="btn-list" type="button"><a
                                         href="/detail/user/<%= dataTable[i].id%>">Detail</a></button>
                                 <button class="btn-list" type="button"><a
-                                        href="/edit-crud/<%= dataTable[i].id%>">Edit</a></button>
-                                <form class="btn-list" action="" method="post">
-                                    <input type="text" hidden value="<%= dataTable[i].id%>" name="userId">
-                                    <button type="submit">Delete</button>
-                                </form>
+                                        href="/edit-crud?id=<%= dataTable[i].id%>">Edit</a></button>
+                                <button class="btn-list" type="button"><a
+                                        href="/delete-crud?id=<%= dataTable[i].id%>">Delete</a></button>
                             </div>
                         </td>
                     </tr>
