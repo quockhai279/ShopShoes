@@ -1,6 +1,5 @@
 import userService from '../services/userService'
 
-
 let handleLogin = async (req, res) => {
     let email = req.body.email
     console.log('email:', email)
@@ -9,7 +8,7 @@ let handleLogin = async (req, res) => {
     if (!email || !password) {
         return res.status(500).json({
             errCode: 1,
-            message: 'Missing inputs'
+            message: 'Missing inputs parameter!'
         })
     }
 

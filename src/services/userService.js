@@ -59,6 +59,5 @@ let checkUserEmail = (userEmail) => {
 }
 
 module.exports = {
-
-    checkUserEmail, handleUserLogin,
+    handleUserLogin,
 }
