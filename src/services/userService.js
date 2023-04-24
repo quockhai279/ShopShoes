@@ -133,7 +133,7 @@ let createNewUser = (data) => {
 let deleteUser = (userId) => {
     return new Promise(async (resolve, reject) => {
         let user = await db.User.findOne({
-            where: { id: userId }
+            where: { id: userId },
         })
         if (!user) {
             resolve({
@@ -154,6 +154,12 @@ let deleteUser = (userId) => {
 let updateUserData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
+            if (!data.id) {
+                resolve({
+                    errCode: 2,
+                    errMessage: 'Missing required parameters'
+                })
+            }
             let user = await db.User.findOne({
                 where: { id: data.id },
                 raw: false
@@ -179,8 +185,31 @@ let updateUserData = (data) => {
     })
 }
 
+let getAllCodeService = (typeInput) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!typeInput) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing required parameters!'
+                })
+            } else {
+                let res = {}
+                let allCode = await db.AllCode.findAll({
+                    where: { type: typeInput }
+                })
+                res.errCode = 0
+                res.data = allCode
+                resolve(res)
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     handleUserLogin, getAllUsers, createNewUser, deleteUser,
-    updateUserData
+    updateUserData, getAllCodeService
 
 }

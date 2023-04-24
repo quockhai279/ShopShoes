@@ -63,7 +63,8 @@ let deleteCRUD = async (req, res) => {
     }
 }
 
+
 module.exports = {
     getEditCRUD, getHomepage, getCRUD, postCRUD,
-    displayGetCRUD, putCRUD, deleteCRUD
+    displayGetCRUD, putCRUD, deleteCRUD,
 }
