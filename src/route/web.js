@@ -18,7 +18,7 @@ const initWebRoute = (app) => {
     router.put('/api/edit-user', userController.handledEditUser);
     router.delete('/api/delete-user', userController.handleDeleteUser);
 
-    router.get('/allcode', userController.getAllcode);
+    router.get('/api/allcode', userController.getAllcode);
 
 
     router.get('/about', (req, res) => {
