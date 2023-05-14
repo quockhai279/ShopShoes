@@ -118,7 +118,8 @@ let createNewUser = (data) => {
                     phoneNumber: data.phoneNumber,
                     gender: data.gender,
                     roleId: data.roleId,
-                    positionId: data.positionId
+                    positionId: data.positionId,
+                    image: data.image,
                 })
                 resolve({
                     errCode: 0,
@@ -155,7 +156,8 @@ let deleteUser = (userId) => {
 let updateUserData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.id) {
+            // if (!data.id) {
+            if (!data.id || !data.roleId || !data.positionId || !data.gender) {
                 resolve({
                     errCode: 2,
                     errMessage: 'Missing required parameters'
@@ -169,6 +171,14 @@ let updateUserData = (data) => {
                 user.firstName = data.firstName;
                 user.lastName = data.lastName;
                 user.address = data.address;
+
+                user.roleId = data.roleId;
+                user.positionId = data.positionId;
+                user.gender = data.gender;
+                user.phoneNumber = data.phoneNumber;
+                if (data.image) {
+                    user.image = data.image;
+                }
                 await user.save();
                 resolve({
                     errCode: 0,
@@ -196,7 +206,7 @@ let getAllCodeService = (typeInput) => {
                 })
             } else {
                 let res = {}
-                let allCode = await db.AllCode.findAll({
+                let allCode = await db.Allcode.findAll({
                     where: { type: typeInput }
                 })
                 res.errCode = 0
