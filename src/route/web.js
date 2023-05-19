@@ -29,7 +29,7 @@ const initWebRoute = (app) => {
     router.get('/api/get-all-doctors', doctorController.getAllDoctors);
     router.post('/api/save-info-doctors', doctorController.postInfoDoctor);
     router.get('/api/get-detail-doctor-by-id', doctorController.getDetailDoctorById);
-
+    router.post('/api/bulk-create-schedule', doctorController.bulkCreateSchedule)
 
     //api product
     router.get('/api/get-all-products', productController.handleGetAllProduct)
