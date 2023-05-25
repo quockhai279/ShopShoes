@@ -77,7 +77,7 @@ let deleteProduct = (productId) => {
         if (!product) {
             resolve({
                 errCode: 2,
-                errMessage: `The product isn't exist`
+                errMessage: `Product isn't exist`
             })
         }
         await db.Product.destroy({
@@ -85,7 +85,7 @@ let deleteProduct = (productId) => {
         })
         resolve({
             errCode: 0,
-            errMessage: `The product is deleted`
+            errMessage: `Product is deleted`
         })
     })
 }

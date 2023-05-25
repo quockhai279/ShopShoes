@@ -15,8 +15,6 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     Category.init({
-        keyMap: DataTypes.STRING,
-        type: DataTypes.STRING,
         valueEn: DataTypes.STRING,
         valueVi: DataTypes.STRING
     }, {

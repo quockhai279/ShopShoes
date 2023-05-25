@@ -74,5 +74,5 @@ let getAllcode = async (req, res) => {
 
 module.exports = {
     handleLogin, handleGetAllUsers, handleCreateNewUser, handledEditUser,
-    handleDeleteUser, getAllcode
+    handleDeleteUser, getAllcode,
 }

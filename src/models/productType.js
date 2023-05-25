@@ -15,11 +15,9 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     productType.init({
-        keyMap: DataTypes.STRING,
-        type: DataTypes.STRING,
-        categoryId: DataTypes.STRING,
         valueEn: DataTypes.STRING,
-        valueVi: DataTypes.STRING
+        valueVi: DataTypes.STRING,
+        categoryId: DataTypes.STRING,
     }, {
         sequelize,
         modelName: 'ProductType',

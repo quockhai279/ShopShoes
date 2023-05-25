@@ -4,6 +4,7 @@ import userController from '../controller/userController';
 import doctorController from '../controller/doctorController';
 import productController from '../controller/productController';
 import productListController from '../controller/productListController';
+import categoryController from '../controller/categoryController';
 
 let router = express.Router();
 
@@ -35,9 +36,17 @@ const initWebRoute = (app) => {
     //api product
     router.get('/api/get-all-products', productController.handleGetAllProduct)
     router.post('/api/create-new-product', productController.handleCreateNewProduct)
-    router.put('/api/edit-product', productController.handleEditProduct)
     router.delete('/api/delete-product', productController.handleDeleteProduct)
+    router.put('/api/edit-product', productController.handleEditProduct)
     router.get('/api/product-list-home', productListController.getProductList)
+
+    //api product category
+    router.get('/api/get-all-category', categoryController.handleGetAllProductCategory)
+    router.post('/api/create-new-category', categoryController.handleCreateNewCategory)
+    router.delete('/api/delete-product-category', categoryController.handleDeleteProductCategory)
+    router.put('/api/edit-product-category', categoryController.handleEditProductCategory)
+
+    // router.get('/api/get-id-all-category', categoryController.handleEditProductCategory)
 
 
     return app.use('/', router)
