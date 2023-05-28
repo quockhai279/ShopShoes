@@ -16,6 +16,19 @@ let getProductList = async (req, res) => {
 
 }
 
+let getProductDetailById = async (req, res) => {
+    try {
+        let info = await productListService.getProductById(req.query.id)
+        return res.status(200).json(info)
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            Message: 'Error from server'
+        })
+    }
+}
+
 module.exports = {
-    getProductList
+    getProductList, getProductDetailById
 }

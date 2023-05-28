@@ -5,6 +5,7 @@ import doctorController from '../controller/doctorController';
 import productController from '../controller/productController';
 import productListController from '../controller/productListController';
 import categoryController from '../controller/categoryController';
+import productTypeController from '../controller/productTypeController';
 
 let router = express.Router();
 
@@ -38,7 +39,10 @@ const initWebRoute = (app) => {
     router.post('/api/create-new-product', productController.handleCreateNewProduct)
     router.delete('/api/delete-product', productController.handleDeleteProduct)
     router.put('/api/edit-product', productController.handleEditProduct)
+
+    //
     router.get('/api/product-list-home', productListController.getProductList)
+    router.get('/api/get-product-detail-by-id', productListController.getProductDetailById)
 
     //api product category
     router.get('/api/get-all-category', categoryController.handleGetAllProductCategory)
@@ -46,7 +50,12 @@ const initWebRoute = (app) => {
     router.delete('/api/delete-product-category', categoryController.handleDeleteProductCategory)
     router.put('/api/edit-product-category', categoryController.handleEditProductCategory)
 
-    // router.get('/api/get-id-all-category', categoryController.handleEditProductCategory)
+    //api type of product
+    router.get('/api/get-all-product-type', productTypeController.handleGetAllProductType)
+    router.post('/api/create-new-product-type', productTypeController.handleCreateProductType)
+    router.delete('/api/delete-product-type', productTypeController.handleDeleteProductType)
+    router.put('/api/edit-product-type', productTypeController.handleEditProductType)
+
 
 
     return app.use('/', router)

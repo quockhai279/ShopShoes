@@ -41,8 +41,6 @@ let createNewCategory = (data) => {
         try {
             await db.Category.create({
                 // dataSQL : inputData
-                keyMap: data.keyMap,
-                type: data.type,
                 valueEn: data.valueEn,
                 valueVi: data.valueVi,
             })
@@ -91,11 +89,8 @@ let updateCategoryData = (data) => {
                 raw: false
             })
             if (category) {
-                category.keyMap = data.keyMap;
-                category.type = data.type;
                 category.valueEn = data.valueEn;
                 category.valueVi = data.valueVi
-
                 await category.save();
                 resolve({
                     errCode: 0,

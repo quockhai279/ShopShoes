@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-
+            Product.belongsTo(models.Category, { foreignKey: 'categoryId', targetKey: 'id', as: 'categoryData' })
+            Product.belongsTo(models.ProductType, { foreignKey: 'productTypeId', targetKey: 'id', as: 'productTypeData' })
         }
     };
     Product.init({
@@ -19,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
         quantity: DataTypes.STRING,
         description: DataTypes.TEXT,
         image: DataTypes.BLOB,
+        brand: DataTypes.STRING,
+        categoryId: DataTypes.INTEGER,
+        productTypeId: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'Product',

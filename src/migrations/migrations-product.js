@@ -23,6 +23,15 @@ module.exports = {
             image: {
                 type: Sequelize.BLOB('long')
             },
+            brand: {
+                type: Sequelize.STRING
+            },
+            categoryId: {
+                type: Sequelize.INTEGER
+            },
+            productTypeId: {
+                type: Sequelize.INTEGER
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

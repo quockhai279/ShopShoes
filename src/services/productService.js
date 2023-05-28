@@ -24,9 +24,7 @@ let getAllProducts = (productId) => {
         try {
             let products = ''
             if (productId === 'ALL') {
-                products = await db.Product.findAll({
-
-                })
+                products = await db.Product.findAll()
             }
             if (productId && productId !== 'ALL') {
                 products = await db.Product.findOne({
@@ -57,6 +55,10 @@ let createNewProduct = (data) => {
                     quantity: data.quantity,
                     description: data.description,
                     image: data.image,
+
+                    brand: data.brand,
+                    categoryId: data.categoryId,
+                    productTypeId: data.productTypeId
                 })
                 resolve({
                     errCode: 0,
@@ -107,7 +109,10 @@ let updateProductData = (data) => {
                 product.name = data.name;
                 product.price = data.price;
                 product.quantity = data.quantity;
-                product.description = data.description
+                product.description = data.description;
+                product.brand = data.brand;
+                product.categoryId = data.categoryId;
+                product.productTypeId = data.productTypeId;
 
                 if (data.image) {
                     product.image = data.image;
