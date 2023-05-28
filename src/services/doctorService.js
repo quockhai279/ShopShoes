@@ -141,7 +141,7 @@ let bulkCreateSchedule = (data) => {
                     errMessage: 'Missing required parameter'
                 })
             } else {
-                let schedule = data.arrSchedule
+                let schedule = data.arrSchedule;
                 if (schedule && schedule.length > 0) {
                     schedule = schedule.map(item => {
                         item.maxNumber = MAX_NUMBER_SCHEDULE;
@@ -154,16 +154,12 @@ let bulkCreateSchedule = (data) => {
                     attributes: ['timeType', 'date', 'doctorId', 'maxNumber'],
                     raw: true
                 })
-                //convert date
-                if (existing && existing.length > 0) {
-                    existing = existing.map(item => {
-                        item.date = new Date(item.date).getTime()
-                        return item
-                    })
-                }
+
+                console.log('check existing', existing);
+                console.log('check schedule', schedule);
                 //compare different
                 let toCreate = _.differenceWith(schedule, existing, (a, b) => {
-                    return a.timeType === b.timeType && a.date === b.date;
+                    return a.timeType === b.timeType && +a.date === +b.date;
                 })
                 //create data
                 if (toCreate && toCreate.length > 0) {
@@ -195,7 +191,12 @@ let getScheduleByDate = (doctorId, date) => {
                         doctorId: doctorId,
                         date: date
                     },
-                    raw: false
+                    include: [
+
+                        { model: db.Allcode, as: 'timeTypeData', attributes: ['valueEn', 'valueVi'] },
+                    ],
+                    raw: false,
+                    nest: true
                 })
                 if (!dataSchedule) dataSchedule = [];
                 resolve({
@@ -208,6 +209,7 @@ let getScheduleByDate = (doctorId, date) => {
         }
     })
 }
+
 module.exports = {
     getTopDoctorHome, getAllDoctors, saveDetailInfoDoctor, getDetailDoctorById,
     bulkCreateSchedule, getScheduleByDate
