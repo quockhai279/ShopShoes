@@ -43,6 +43,7 @@ const initWebRoute = (app) => {
     //
     router.get('/api/product-list-home', productListController.getProductList)
     router.get('/api/get-product-detail-by-id', productListController.getProductDetailById)
+    // router.get('/api/product-list-home-page', productListController.getProductListLimit)
 
     //api product category
     router.get('/api/get-all-category', categoryController.handleGetAllProductCategory)

@@ -66,6 +66,38 @@ let getProductById = (inputId) => {
     })
 }
 
+// let getProductListPage = (limitInput, page) => {
+//     return new Promise(async (resolve, reject) => {
+//         try {
+//             let totalProduct = await db.Product.count()
+//             let products = await db.Product.findAll({
+//                 limit: limitInput,
+//                 skip: (page * limitInput),
+//                 order: [['createdAt', 'DESC']],
+//                 attributes: {
+//                     exclude: ['image'],
+//                 },
+//                 // include: [
+//                 //     { model: db.Category, as: 'categoryData', attributes: ['valueEn', 'valueVi'] },
+//                 //     { model: db.ProductType, as: 'productTypeData', attributes: ['valueEn', 'valueVi'] },
+//                 // ],
+//                 raw: true,
+//                 nest: true
+//             })
+//             resolve({
+//                 errCode: 0,
+//                 data: products,
+//                 totalProduct: totalProduct,
+//                 pageCurrent: page + 1,
+//                 totalPage: Math.ceil(totalProduct / limitInput)
+//             })
+//         } catch (e) {
+//             reject(e)
+//         }
+//     })
+// }
+
 module.exports = {
-    getProductListHome, getProductById
+    getProductListHome, getProductById,
+    //  getProductListPage
 }

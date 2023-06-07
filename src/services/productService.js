@@ -24,7 +24,9 @@ let getAllProducts = (productId) => {
         try {
             let products = ''
             if (productId === 'ALL') {
-                products = await db.Product.findAll()
+                products = await db.Product.findAll({
+
+                })
             }
             if (productId && productId !== 'ALL') {
                 products = await db.Product.findOne({
