@@ -1,6 +1,6 @@
 import db from '../models/index'
 require('dotenv').config();
-import _ from 'lodash'
+import _, { reject } from 'lodash'
 
 const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
 
@@ -242,7 +242,6 @@ let getScheduleByDate = (doctorId, date) => {
                         date: date
                     },
                     include: [
-
                         { model: db.Allcode, as: 'timeTypeData', attributes: ['valueEn', 'valueVi'] },
                     ],
                     raw: false,
@@ -260,7 +259,43 @@ let getScheduleByDate = (doctorId, date) => {
     })
 }
 
+let getExtraInfoDoctorById = (inputId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!inputId) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing required parameters'
+                })
+            } else {
+                let data = await db.DoctorInfo.findOne({
+                    where: {
+                        doctorId: inputId
+                    },
+                    attributes: {
+                        exclude: ['id', 'doctorId']
+                    },
+                    include: [
+                        { model: db.Allcode, as: 'priceTypeData', attributes: ['valueEn', 'valueVi'] },
+                        { model: db.Allcode, as: 'provinceTypeData', attributes: ['valueEn', 'valueVi'] },
+                        { model: db.Allcode, as: 'paymentTypeData', attributes: ['valueEn', 'valueVi'] },
+                    ],
+                    raw: false,
+                    nest: true
+                })
+                if (!data) data = {}
+                resolve({
+                    errCode: 0,
+                    data: data
+                })
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     getTopDoctorHome, getAllDoctors, saveDetailInfoDoctor, getDetailDoctorById,
-    bulkCreateSchedule, getScheduleByDate
+    bulkCreateSchedule, getScheduleByDate, getExtraInfoDoctorById
 }
