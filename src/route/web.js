@@ -40,7 +40,6 @@ const initWebRoute = (app) => {
     //patient
     router.post('/api/patient-book-appointment', patientController.postBookAppointment);
 
-
     //api product
     router.get('/api/get-all-products', productController.handleGetAllProduct)
     router.post('/api/create-new-product', productController.handleCreateNewProduct)

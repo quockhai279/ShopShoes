@@ -1,4 +1,5 @@
 import db from '../models/index'
+require('dotenv').config();
 
 let postBookAppointment = (data) => {
     return new Promise(async (resolve, reject) => {
@@ -30,7 +31,7 @@ let postBookAppointment = (data) => {
                 }
                 resolve({
                     errCode: 0,
-                    Message: 'Save info doctor succeed !',
+                    Message: 'Save info patient succeed !',
                 })
             }
         } catch (e) {
