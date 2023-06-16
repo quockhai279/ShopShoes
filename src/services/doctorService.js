@@ -1,6 +1,6 @@
 import db from '../models/index'
 require('dotenv').config();
-import _, { reject } from 'lodash'
+import _ from 'lodash'
 
 const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
 
@@ -9,6 +9,7 @@ let getTopDoctorHome = (limitInput) => {
         try {
             let users = await db.User.findAll({
                 limit: limitInput,
+                where: { roleId: 'R2' },
                 order: [['createdAt', 'DESC']],
                 attributes: {
                     exclude: ['password'],
@@ -204,7 +205,6 @@ let bulkCreateSchedule = (data) => {
                     attributes: ['timeType', 'date', 'doctorId', 'maxNumber'],
                     raw: true
                 })
-
                 console.log('check existing', existing);
                 console.log('check schedule', schedule);
                 //compare different
@@ -243,6 +243,8 @@ let getScheduleByDate = (doctorId, date) => {
                     },
                     include: [
                         { model: db.Allcode, as: 'timeTypeData', attributes: ['valueEn', 'valueVi'] },
+
+                        { model: db.User, as: 'doctorData', attributes: ['firstName', 'lastName'] },
                     ],
                     raw: false,
                     nest: true
