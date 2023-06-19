@@ -7,6 +7,8 @@ import productListController from '../controller/productListController';
 import categoryController from '../controller/categoryController';
 import productTypeController from '../controller/productTypeController';
 import patientController from '../controller/patientController';
+import specialtyController from "../controller/specialtyController";
+
 
 let router = express.Router();
 
@@ -40,6 +42,9 @@ const initWebRoute = (app) => {
     //patient
     router.post('/api/patient-book-appointment', patientController.postBookAppointment);
     router.post('/api/verify-book-appointment', patientController.postVerifyBookAppointment);
+
+    //specialty
+    router.post('/api/create-new-specialty', specialtyController.createSpecialty);
 
     //api product
     router.get('/api/get-all-products', productController.handleGetAllProduct)
