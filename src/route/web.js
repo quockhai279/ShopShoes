@@ -45,6 +45,7 @@ const initWebRoute = (app) => {
 
     //specialty
     router.post('/api/create-new-specialty', specialtyController.createSpecialty);
+    router.get('/api/get-specialty', specialtyController.getAllSpecialty);
 
     //api product
     router.get('/api/get-all-products', productController.handleGetAllProduct)
