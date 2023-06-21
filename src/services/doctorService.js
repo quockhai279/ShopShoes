@@ -221,8 +221,8 @@ let bulkCreateSchedule = (data) => {
                     attributes: ['timeType', 'date', 'doctorId', 'maxNumber'],
                     raw: true
                 })
-                console.log('check existing', existing);
-                console.log('check schedule', schedule);
+                // console.log('check existing', existing);
+                // console.log('check schedule', schedule);
                 //compare different
                 let toCreate = _.differenceWith(schedule, existing, (a, b) => {
                     return a.timeType === b.timeType && +a.date === +b.date;
