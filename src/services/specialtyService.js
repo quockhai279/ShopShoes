@@ -43,6 +43,50 @@ let getAllSpecialty = () => new Promise(async (resolve, reject) => {
     }
 })
 
+let getDetailSpecialtyById = ({ id, location }) => new Promise(async (resolve, reject) => {
+    try {
+        if (!id || !location) {
+            resolve({
+                errCode: 1,
+                Message: 'Missing parameter'
+            })
+        } else {
+            let data = await db.Specialty.findOne({
+                where: {
+                    id: id
+                },
+                attributes: ['descriptionHTML', 'descriptionMarkdown']
+            })
+            if (data) {
+                let doctorSpecialty = []
+                if (location === 'ALL') {
+                    doctorSpecialty = await db.DoctorInfo.findAll({
+                        where: { specialtyId: id },
+                        attributes: ['doctorId', 'provinceId']
+                    })
+                } else {
+                    //find by location
+                    doctorSpecialty = await db.DoctorInfo.findAll({
+                        where: {
+                            specialtyId: id,
+                            provinceId: location,
+                        },
+                        attributes: ['doctorId', 'provinceId']
+                    })
+                }
+                data.doctorSpecialty = doctorSpecialty
+            } else data = {}
+            resolve({
+                errCode: 0,
+                Message: 'ok',
+                data
+            })
+        }
+    } catch (e) {
+        reject(e)
+    }
+})
+
 module.exports = {
-    createSpecialty, getAllSpecialty
+    createSpecialty, getAllSpecialty, getDetailSpecialtyById
 }
