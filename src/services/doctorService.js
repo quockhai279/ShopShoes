@@ -53,8 +53,7 @@ let getAllDoctors = () => {
 let checkRequiredFields = (inputData) => {
     let arr = ['doctorId', 'action', 'contentHTML', 'contentMarkdown', 'selectedPrice',
         'selectedPayment', 'selectedProvince', 'nameClinic', 'addressClinic', 'note',
-        'specialtyId',
-        // 'clinicId'
+        'specialtyId', 'clinicId'
     ]
     let isValid = true
     let element = ''

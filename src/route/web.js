@@ -8,7 +8,7 @@ import categoryController from '../controller/categoryController';
 import productTypeController from '../controller/productTypeController';
 import patientController from '../controller/patientController';
 import specialtyController from "../controller/specialtyController";
-
+import clinicController from '../controller/clinicController'
 
 let router = express.Router();
 
@@ -48,13 +48,18 @@ const initWebRoute = (app) => {
     router.get('/api/get-specialty', specialtyController.getAllSpecialty);
     router.get('/api/get-detail-specialty-by-id', specialtyController.getDetailSpecialtyById);
 
+    //clinic
+    router.post('/api/create-new-clinic', clinicController.createClinic);
+    router.get('/api/get-clinic', clinicController.getAllClinic);
+    router.get('/api/get-detail-clinic-by-id', clinicController.getDetailClinicById);
+
     //api product
     router.get('/api/get-all-products', productController.handleGetAllProduct)
     router.post('/api/create-new-product', productController.handleCreateNewProduct)
     router.delete('/api/delete-product', productController.handleDeleteProduct)
     router.put('/api/edit-product', productController.handleEditProduct)
 
-    //
+    //api product limit
     router.get('/api/product-list-home', productListController.getProductList)
     router.get('/api/get-product-detail-by-id', productListController.getProductDetailById)
     // router.get('/api/product-list-home-page', productListController.getProductListLimit)

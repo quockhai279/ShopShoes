@@ -10,11 +10,14 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
+
         }
     };
     Clinic.init({
+        name: DataTypes.STRING,
         address: DataTypes.STRING,
-        description: DataTypes.STRING,
+        descriptionHTML: DataTypes.TEXT,
+        descriptionMarkdown: DataTypes.TEXT,
         image: DataTypes.BLOB
     }, {
         sequelize,

@@ -18,7 +18,7 @@ let getProductList = async (req, res) => {
 
 let getProductDetailById = async (req, res) => {
     try {
-        let info = await productListService.getProductById(req.query.id)
+        let info = await productListService.getProductDetailById(req.query.id)
         return res.status(200).json(info)
     } catch (e) {
         console.log(e);

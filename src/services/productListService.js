@@ -27,7 +27,7 @@ let getProductListHome = (limitInput) => {
     })
 }
 
-let getProductById = (inputId) => {
+let getProductDetailById = (inputId) => {
     return new Promise(async (resolve, reject) => {
         try {
             if (!inputId) {
@@ -98,6 +98,6 @@ let getProductById = (inputId) => {
 // }
 
 module.exports = {
-    getProductListHome, getProductById,
+    getProductListHome, getProductDetailById,
     //  getProductListPage
 }
